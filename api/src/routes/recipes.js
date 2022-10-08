@@ -8,22 +8,28 @@ router.get("/", async (req, res) => {
 
   if (!name) {
     try {
-      const allData = await getRecipesApi();
-      console.log(allData)
+      const allData = await getAll();
+
       res.status(200).json(allData);
     } catch (err) {
       res.status(400).send("No se pueden traer las recetas");
     }
   } else {
-    const allRec = await getAll();
+    try {
+      const apiNames = await getRecipesApi(name);
+      const dbNames = await getRecipesDb(name);
 
-    const dataNames = allRec.filter((e) =>
-      e.name.toLowerCase().includes(name.toLowerCase())
-    );
+      const allNames = apiNames.concat(dbNames);
 
-    return dataNames;
+
+      
+      res.status(200).json(allNames)
+    } catch (err) {
+      res.status(400).send('No se encontró dicho nombre')
+    }
   }
 });
+
 router.get("/:id", async (req, res) => {});
 router.post("/", async (req, res) => {});
 

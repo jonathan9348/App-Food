@@ -1,11 +1,34 @@
 const axios = require("axios");
 const { Recipe, Diet } = require("../db");
+const { Op } = require("sequelize");
 const { API_KEY } = process.env;
 
-const getRecipesApi = async () => {
+const arrayDiets = (stringArray) => //mapeo todo lo que me mandan dentro de los parentesis, en este caso serán dietas
+  stringArray.map((item, index) => ({
+    id: index,
+    name: item,
+  }));
+
+const arrayInstruc = (instructionArray) => {
+  //Nos van a mandar un array aqui dentro
+  const arrInstruction = [];
+  for (var i = 0; i < instructionArray?.length; i++) {
+    //iniciamos la iteracion de lo que serán las instrucciones
+    for (var j = 0; j < instructionArray[i].steps?.length; j++) {
+      //por cada iteración vamos pusheando distintos valores dentro de steps.
+      arrInstruction.push({
+        number: instructionArray[i].steps[j].number,
+        step: instructionArray[i].steps[j].step,
+      });
+    }
+  }
+  return arrInstruction; //devolvemos todos los valores pusheados
+};
+
+const getRecipesApi = async (name) => {
   try {
     const apiRecipes = await axios.get(
-      `https://api.spoonacular.com/recipes/complexSearch?${API_KEY}&addRecipeInformation=true&number=100`
+      `https://api.spoonacular.com/recipes/complexSearch?apiKey=${API_KEY}&addRecipeInformation=true&number=100`
     );
 
     const info = apiRecipes.data.results.map((e) => {
@@ -16,15 +39,23 @@ const getRecipesApi = async () => {
           //Array con los tipos de platos
           return { name: p };
         }),
-        diets: e.diets.maps((d) => {
-          //Array con los tipos de dietas
-          return { name: d };
-        }),
+        diets: arrayDiets(e.diets),
         summary: e.summary,
-        instructions: e.instructions,
+        instructions: arrayInstruc(e.analyzedInstructions),
         image: e.image,
       };
     });
+
+    if (name) {
+      try {
+        const dataNames = info.filter((e) =>
+          e.name.toLowerCase().includes(name.toLowerCase())
+        );
+        return dataNames;
+      } catch (err) {
+        alert("No se encontró dicho nombre");
+      }
+    }
 
     return info;
   } catch (err) {
@@ -32,28 +63,50 @@ const getRecipesApi = async () => {
   }
 };
 
-const getRecipesDb = async () => {
-  const dbInfo = await Recipe.findAll({
-    include: [
-      {
-        model: Diet,
-        attributes: ["name"],
-        through: {
-          attributes: [],
+const getRecipesDb = async (name) => {
+  if (!name) {
+    const dbInfo = await Recipe.findAll({
+      include: [
+        {
+          model: Diet,
+          attributes: ["name"],
+          through: {
+            attributes: [],
+          },
         },
+      ],
+    });
+    return dbInfo;
+  } else {
+    const dbInfoName = await Recipe.findAll({
+      include: [
+        {
+          model: Diet,
+          attibutes: ["name"],
+          through: {
+            attibutes: [],
+          },
+        },
+      ],
+      where: {
+        name: { [Op.iLike]: `%${name}%` },
       },
-    ],
-  });
-  return dbInfo;
+    });
+    return dbInfoName;
+  }
 };
 
-const getAll = async () => {
-  const inApi = await getRecipesApi();
-  const inDb = await getRecipesDb();
+const getAll = async (name) => {
+  const inApi = await getRecipesApi(name);
+  const inDb = await getRecipesDb(name);
 
   const allInfo = inApi.concat(inDb);
 
   return allInfo;
 };
+
+const getId = async (id) =>{
+  
+}
 
 module.exports = { getRecipesApi, getRecipesDb, getAll };
