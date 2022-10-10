@@ -3,7 +3,9 @@ const { Recipe, Diet } = require("../db");
 const { Op } = require("sequelize");
 const { API_KEY } = process.env;
 
-const arrayDiets = (stringArray) => //mapeo todo lo que me mandan dentro de los parentesis, en este caso serán dietas
+const arrayDiets = (
+  stringArray //mapeo todo lo que me mandan dentro de los parentesis, en este caso serán dietas
+) =>
   stringArray.map((item, index) => ({
     id: index,
     name: item,
@@ -105,8 +107,29 @@ const getAll = async (name) => {
   return allInfo;
 };
 
-const getId = async (id) =>{
-  
-}
+const getId = async (id) => {
+  const recipesId = await axios.get(
+    `https://api.spoonacular.com/recipes/${id}/information?apiKey=${API_KEY}`
+  );
+  const dataId = recipesId.data;
 
-module.exports = { getRecipesApi, getRecipesDb, getAll };
+  const infoApi = {
+    
+      id: dataId.id,
+      name: dataId.title,
+      image: dataId.image,
+      dishTypes: dataId.dishTypes.map((e) => {
+        //Array con los tipos de platos
+        return { name: e };
+      }),
+      diets: arrayDiets(dataId.diets),
+      summary: dataId.summary,
+      healthScore: dataId.healthScore,
+      instructions: arrayInstruc(dataId.analyzedInstructions),
+    };
+  ;
+
+  return infoApi;
+};
+
+module.exports = { getRecipesApi, getRecipesDb, getAll, getId };
