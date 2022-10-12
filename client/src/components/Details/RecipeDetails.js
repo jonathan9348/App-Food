@@ -28,9 +28,10 @@ export default function RecipeDetails() {
         <img src={detRec.image} alt='img not found' className=''/>
 
         <div>
-            <h4>
+            {isNaN(detRec.id)? 'Imagen ilustrativa' :
+            (<h4>
                 Type of Dish: {detRec.dishTypes?.map(e => e.name).toString().split(' ')}
-            </h4>
+            </h4>)}
         </div>
 
         <div>
@@ -40,7 +41,9 @@ export default function RecipeDetails() {
 
         <div className='cont-g'>
             <h4>Diets:</h4>
+        
             <h5>{detRec.diets?.map(e => e.name).toString().split('')}</h5>
+            
                       
                     </div>
 

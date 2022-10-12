@@ -88,19 +88,12 @@ export default function rootReducer(state = initialState, action) {
     
 
     case FILTER_DIET:
-      const recipesAll = state.allRecipes;
-      const dietsFiltered =
-        action.payload === "All"
-          ? recipesAll
-          : recipesAll.filter((el) => el.diets?.includes(action.payload));
-      if (dietsFiltered.length === 0) {
-        alert(`No recipes found for ${action.payload} diet`);
-        return state;
-      } else {
-        return {
-          ...state,
-          recipes: dietsFiltered,
-        };
+      const allRecipes = state.allRecipes; //state.recipes
+      const typesFiltered = action.payload === 'All' ? allRecipes : allRecipes.filter(el => el.diets.includes(action.payload) ||
+        el.diets.map((el) => el.name).includes(action.payload))
+      return {
+        ...state,
+        recipes: typesFiltered
       }
 
       case FILTER_DB:
