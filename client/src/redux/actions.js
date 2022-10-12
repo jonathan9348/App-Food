@@ -39,7 +39,7 @@ export function searchRecipes(name) {
 
 export function recipesDetails(id) {
   return async (dispatch) => {
-    const recId = await axios.get(`http://localhost:3001/recipes?name=${id}`);
+    const recId = await axios.get(`http://localhost:3001/recipes/${id}`);
 
     return dispatch({
       type: RECIPES_DETAILS,
@@ -61,7 +61,7 @@ export function getDiets() {
 
 export function createRecipe(payload) {
   return async () => {
-    const createdRecipes = await axios.post("http://localhost:3001", payload);
+    const createdRecipes = await axios.post("http://localhost:3001/recipes", payload);
     return createdRecipes;
   };
 }

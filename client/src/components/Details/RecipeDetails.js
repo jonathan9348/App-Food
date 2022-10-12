@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { recipesDetails } from '../../redux/actions';
+import { Link } from 'react-router-dom';
 
 export default function RecipeDetails() {
 
@@ -10,7 +11,7 @@ export default function RecipeDetails() {
 
     useEffect(() =>{
         dispatch(recipesDetails(id))
-    },[dispatch, id]);
+    },[dispatch]);
 
     const detRec = useSelector((state) => state.details);
 
@@ -24,30 +25,43 @@ export default function RecipeDetails() {
             <h1>{detRec.name}</h1>
         </div>
 
-        <img src={detRec.img? detRec.img : detRec.image} alt='' className=''/>
+        <img src={detRec.image} alt='img not found' className=''/>
 
         <div>
             <h4>
-                Type of Dish: {detRec.dishTypes}
+                Type of Dish: {detRec.dishTypes?.map(e => e.name).toString().split(' ')}
             </h4>
         </div>
 
         <div>
             <h4> Summary: </h4>
-            <p>{detRec.summary}</p>
+            <p>{detRec.summary?.replace(/<[^>]*>?/g, "")}</p> {/*reemplaza el primer argumento por el segundo, en este caso sera un string vacio y por ende se eliminaran los simbolos*/}
         </div>
 
         <div className='cont-g'>
-                        It's an{' '}
-                        {!detRec.createdInDb
-                        ? detRec.diets + ' '
-                        : detRec.diets.map((e)=> e.name+ ' ')}
-                        recipe health score at {detRec.healthScore} points.
+            <h4>Diets:</h4>
+            <h5>{detRec.diets?.map(e => e.name).toString().split('')}</h5>
+                      
                     </div>
 
                     <div className='cont-p'>
-                        <p>Steps: {detRec.instructions}</p>
+                    <h3>Steps: </h3>
+                    {detRec.instructions?.length > 1 &&
+                    isNaN(detRec.id) ? detRec.instructions :
+                    detRec.instructions?.map(e => {
+                        return(
+                            <ul>
+                                <li>{e.number +': ' + e.step}</li>
+                            </ul>
+                        )
+                    })}
+                    
+                    
                     </div>
+
+                    <Link to="/home"> 
+                        <button className="botback" type="submit">🡸</button>
+                    </Link>
     </div>
   )
 }

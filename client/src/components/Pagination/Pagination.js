@@ -8,7 +8,7 @@ export default function Pagination({
 }) {
   const numberPage = [];
 
-  for (let i = 0; i <= Math.ceil(allRecipes / recipesPage); i++) {
+  for (let i = 1; i <= Math.ceil(allRecipes / recipesPage); i++) {
                         //Math.ceil devuelve el entero mayor o igual mas proximo de un numero dado.
     numberPage.push(i); // Ejemplo: Math.ceil(0.95) ==> (1)
   }
@@ -22,7 +22,7 @@ export default function Pagination({
           numberPage &&
           numberPage.map((n) => (
             <button
-              onClick={(n) => setPagination(n)}
+              onClick={() => setPagination(n)}
               className={
                 actualPage === n ? "active items letters" : "items letters"
               }>
