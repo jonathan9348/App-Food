@@ -44,6 +44,7 @@ const getRecipesApi = async (name) => {
         diets: arrayDiets(e.diets),
         summary: e.summary,
         instructions: arrayInstruc(e.analyzedInstructions),
+        healthScore: e.healthScore,
         image: e.image,
       };
     });
