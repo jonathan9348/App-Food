@@ -1,4 +1,5 @@
 import React from "react";
+import '../Pagination/Pagination.css';
 
 export default function Pagination({
   allRecipes,
@@ -15,7 +16,7 @@ export default function Pagination({
 
   return (
     <nav>
-      <div>
+      <div className="grid-container">
         {allRecipes < 9 ? (
           <div> {setPagination(1)} </div>
         ) : (

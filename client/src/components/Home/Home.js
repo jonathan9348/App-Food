@@ -13,6 +13,7 @@ import {
   orderScore,
 } from "../../redux/actions";
 import { Link } from "react-router-dom";
+import '../Home/Home.css';
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -65,28 +66,28 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <div>
+    <div className="cont1">
+      <div className="cont2">
         <div>
-          <button className="" onClick={(e) => {handleClick(e)}}>
+          <button className="btn-1" onClick={(e) => {handleClick(e)}}>
             Load Recipes
           </button>
         </div>
 
         <div>
           <Link to="/create">
-            <button className="">Create Recipe</button>
+            <button className="btn-1">Create Recipe</button>
           </Link>
         </div>
 
-        <div>
+        <div className="search">
           <SearchBar />
         </div>
         {/*--------------FILTRADO Y ORDEN---------------*/}
-        <div>
+        <div className="filter">
           <div>
             <div>Filter by Diet</div>
-            <select className="" onChange={(e) => {handleFilterDiets(e)}}>
+            <select className="sbFilter" onChange={(e) => {handleFilterDiets(e)}}>
               <option value="All" default>All Diets</option>
               {diets.map((e) => (
                 <option value={e.name} key={e.id}>
@@ -98,7 +99,7 @@ export default function Home() {
 
           <div>
             <div>Filter by name</div>
-            <select className="" onChange={(e) => {handleSortAlf(e)}}>
+            <select className="sbFilter" onChange={(e) => {handleSortAlf(e)}}>
               <option value="All" default>All Diets</option>
               <option value="asc_name">Sort(A-Z)</option>
               <option value="des_name">Sort(Z-A)</option>
@@ -107,7 +108,7 @@ export default function Home() {
 
           <div>
             <div>Filter by Health Score</div>
-            <select className="" onChange={(e) => {handleSortScore(e)}}>
+            <select className="sbFilter" onChange={(e) => {handleSortScore(e)}}>
               <option value="All" default>All healthScore</option>
               <option value="asc_score">Sort(min-max)</option>
               <option value="des_score">Sort(max-min)</option>
@@ -116,7 +117,7 @@ export default function Home() {
 
           <div>
             <div>Filter by Created/Existing</div>
-            <select className="" onChange={(e) => {handleFilterPost(e)}}>
+            <select className="sbFilter" onChange={(e) => {handleFilterPost(e)}}>
               <option value="All" default>All Recipes</option>
               <option value="Api">Recipes in API</option>
               <option value="Created">Recipes in DB</option>
@@ -125,9 +126,9 @@ export default function Home() {
         </div>
       </div>
 
-      <h1>What are you going to cook today?</h1>
+      <h1 className="title">What are you going to cook today?</h1>
 
-      <div>
+      <div className="layout">
         {result?.map((e) => {
           return (
             <div key={e.id}>

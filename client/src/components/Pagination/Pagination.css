@@ -1,0 +1,50 @@
+nav{
+    margin-left: 20em;
+}
+
+.grid-container {
+    display : inline-grid;
+}
+
+.items {
+
+    background-color:chocolate ;
+    border-radius: 5px;
+    margin: 0.8rem;
+    padding: 10px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1em;
+    text-shadow: 1px 0.1em 0.2em black;
+    grid-row-start: 1;
+    grid-row-end: 3;
+    cursor: pointer;
+}
+
+.items:hover{
+    background-color: tan;
+}
+
+
+
+.letters{
+    color: azure;
+}
+
+
+.active {
+    background-color:sandybrown;
+    
+}
+
+@media only screen and (max-width: 600px) {
+    .items {
+
+        background-color:#136d7a;
+        border-radius: 50px;
+        margin: 0.2rem;
+        padding: 8px;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+
+}

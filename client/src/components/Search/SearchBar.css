@@ -1,0 +1,37 @@
+.container {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    padding: 10px;
+    margin-top: 27px;
+  
+  }
+
+  .btn {
+    background-color:sienna ;
+    color: tan ;
+    padding-top: 1px;
+    text-shadow: 0.1em 0.2em 0.3em black;
+   
+    text-align: center;
+    padding: 8px 24px;
+    border-radius: 8px;
+    transition-duration: 0.4s;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1em;
+    box-shadow: 0.1em 0.2em 0.3em black;
+  }
+  .btn:hover {
+    background-color:chocolate;
+    cursor: pointer;
+    color: black; 
+  }
+
+  .sbinput{
+    border: 2px solid black;
+    box-shadow: 0.1em 0.2em 0.3em black;
+    margin-right: 5px;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1em;
+    
+  }
