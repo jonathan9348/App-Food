@@ -1,0 +1,85 @@
+.title-page {
+  display: block;
+  top: 1em;
+  left: 5.5em;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  color: tan;
+  font-size: 70px;
+  text-shadow: 1px 0.1em 0.2em black;
+  margin-top: 30px;
+  text-align: center;
+}
+
+.title-rec {
+  text-shadow: 0.1em 0.2em 0.3em white;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 4em;
+  text-align: center;
+}
+
+.img-st {
+  width: 400px;
+  height: 400px;
+  border: 1px solid black;
+  box-shadow: 0.3em 0.3em 0.3em black;
+  margin-left: 500px;
+}
+
+.dish {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 2em;
+  color: black;
+  text-shadow: 1px 0.1em 0.2em white;
+  text-align: center;
+}
+
+.cont-p {
+  background-color: tan;
+  opacity: 85%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 1.2em;
+}
+
+.summ {
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  text-align: center;
+  font-size: 1.5em;
+}
+
+.lett {
+  font-family: "Times New Roman", Times, serif;
+  font-size: 1em;
+  color: black;
+  text-align: center;
+}
+
+.cont-g {
+  display: inline-block;
+  background-color: tan;
+  opacity: 85%;
+  font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
+  font-size: 20px;
+  text-align: center;
+  margin-left: 570px;
+}
+
+.botback {
+  margin-top: 1em;
+  margin-left: 650px;
+  width: 50px;
+  text-align: center;
+  border-radius: 5px;
+  border: 1px solid black;
+  box-shadow: 0px 0px 10px 5px black;
+  background-color: rgb(209, 138, 45);
+  color: tan;
+  line-height: 2;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 1em;
+}
+
+.botback:hover {
+  cursor: pointer;
+  background-color: white;
+  color: black;
+}

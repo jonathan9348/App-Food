@@ -126,7 +126,7 @@ export default function Home() {
         </div>
       </div>
 
-      <h1 className="title">What are you going to cook today?</h1>
+      <h2 className="title">What are you going to cook today?</h2>
 
       <div className="layout">
         {result?.map((e) => {

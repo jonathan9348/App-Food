@@ -33,7 +33,7 @@
     box-shadow: 0.1em 0.5em 0.3em black;
 }
 
-h1{
+.name-h{
     margin: auto;
     color: sienna;
     text-decoration: none;
@@ -42,7 +42,7 @@ h1{
     font-size: 20px;
 }
 
-h3{
+.diet-h{
     margin-top: 15px;
     color: saddlebrown;
     text-shadow:0.1em 0.5em 0.3em black ;
@@ -51,7 +51,7 @@ h3{
     text-decoration: none;
 }
 
-h4 {
+.hs-h {
     margin-top: 20px;
     color: saddlebrown;
     text-shadow:0.1em 0.5em 0.3em black ;
@@ -60,11 +60,3 @@ h4 {
     text-decoration: none;
 }
 
-p {
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-    font-size: 0.9em;
-    margin: 12px;
-    padding: 1px;  
-    color: black;
-    
-}

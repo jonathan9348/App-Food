@@ -4,6 +4,7 @@ import { useHistory } from "react-router-dom";
 import { createRecipe, getDiets } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import validation from "../validation";
+import '../Created/created.css'
 
 export default function Created() {
   const dispatch = useDispatch();
@@ -84,43 +85,43 @@ export default function Created() {
   };
 
   return (
-    <div>
-      <h1>Create Recipe!</h1>
+    <div className="title">
+      <h1 className="title-post">Create Recipe!</h1>
 
-      <form className="" noValidate onSubmit={(e) => handleSubmit(e)}>
+      <form className="form-name" noValidate onSubmit={(e) => handleSubmit(e)}>
         <div>
           <div>
-            <div className="">
+            <div >
               <div>
-                <label className="">-Name-</label>
+                <label className="tit">-Name-</label>
                 <input
                   
-                  className=""
+                  className="label-input"
                   type="text"
                   name="name"
                   value={recipe.name}
                   onChange={(e) => changeInput(e)}
                 />
-                {errors.name ? (<p className="">{errors.name}</p>) : null}
+                {errors.name ? (<p className="errors">{errors.name}</p>) : null}
               </div>
-              <div className="">
-              <label className="">-Description-</label>
+              <div >
+              <label className="tit">-Description-</label>
                 <input
                   
-                  className=""
+                  className="label-input"
                   type="text"
                   name="summary"
                   value={recipe.summary}
                   onChange={(e) => changeInput(e)}
                 />
-                {errors.summary ? (<p className="">{errors.summary}</p>) : null}
+                {errors.summary ? (<p className="errors">{errors.summary}</p>) : null}
                     
                     
                 </div>
               <div>
-                <label className="">-Instructions-</label>
+                <label className="tit">-Instructions-</label>
                 <input
-                  className=""
+                  className="label-input"
                   type="text"
                   name="instructions"
                   value={recipe.instructions}
@@ -128,23 +129,23 @@ export default function Created() {
                 />
               </div>
               <div>
-                <label className="">-Health Score-</label>
+                <label className="tit">-Health Score-</label>
                 <input
-                  className=""
+                  className="label-input"
                   type="number"
                   name="healthScore"
                   value={recipe.healthScore}
                   onChange={(e) => changeInput(e)}
                 />
                 {errors.healthScore ? (
-                  <p className="">{errors.healthScore}</p>
+                  <p className="errors">{errors.healthScore}</p>
                 ) : null}
               </div>
             </div>
             <div>
-              <label className="">-Image-</label>
+              <label className="tit">-Image-</label>
               <input
-                className=""
+                className="label-input"
                 type="text"
                 name="image"
                 value={recipe.image}
@@ -152,10 +153,10 @@ export default function Created() {
               />
             </div>
           </div>
-          <div>
-            <label className="">-Diets-</label>
-            <div>
-              <select className="" onChange={(e) => handleSelect(e)}>
+          <div className="check">
+            <label className="tit">-Diets-</label>
+            <div className="dietdiv">
+              <select className="label-input" onChange={(e) => handleSelect(e)}>
                 {diets.map((d) => (
                   <option value={d.name} key={d.id}>
                     {d.name}
@@ -170,11 +171,11 @@ export default function Created() {
           </div>
 
           {!Object.keys(errors).length && !checkProperties(recipe) ? (
-            <button type="submit" className="">
+            <button type="submit" className="btn-post">
               <span>Create</span>
             </button>
           ) : (
-            <button disabled type="submit" className="">
+            <button disabled type="submit" className="btn-post">
               <span>Create</span>
             </button>
           )}

@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom'
 import { recipesDetails } from '../../redux/actions';
 import { Link } from 'react-router-dom';
+import '../Details/RecipeDetails.css';
 
 export default function RecipeDetails() {
 
@@ -16,44 +17,44 @@ export default function RecipeDetails() {
     const detRec = useSelector((state) => state.details);
 
   return (
-    <div>
+    <div className='content'>
         <div>
-            <h1>Recipe Detail</h1>
+            <h1 className='title-page'>Recipe Detail</h1>
         </div>
 
         <div>
-            <h1>{detRec.name}</h1>
+            <h1 className='title-rec'>{detRec.name}</h1>
         </div>
 
-        <img src={detRec.image} alt='img not found' className=''/>
+        <img src={detRec.image} alt='img not found' className='img-st'/>
 
         <div>
             {isNaN(detRec.id)? 'Imagen ilustrativa' :
-            (<h4>
+            (<h4 className='dish'>
                 Type of Dish: {detRec.dishTypes?.map(e => e.name).toString().split(' ')}
             </h4>)}
         </div>
 
-        <div>
-            <h4> Summary: </h4>
-            <p>{detRec.summary?.replace(/<[^>]*>?/g, "")}</p> {/*reemplaza el primer argumento por el segundo, en este caso sera un string vacio y por ende se eliminaran los simbolos*/}
+        <div className='cont-p'>
+            <h4 className='summ'> Summary: </h4>
+            <p className='lett'>{detRec.summary?.replace(/<[^>]*>?/g, "")}</p> {/*reemplaza el primer argumento por el segundo, en este caso sera un string vacio y por ende se eliminaran los simbolos*/}
         </div>
 
-        <div className='cont-g'>
-            <h4>Diets:</h4>
+        <div className='cont-p'>
+            <h4 className='summ'>Diets:</h4>
         
-            <h5>{detRec.diets?.map(e => e.name).toString().split('')}</h5>
+            <h3 className='lett'>{detRec.diets?.map(e => e.name).toString().split('')}</h3>
             
                       
                     </div>
 
                     <div className='cont-p'>
-                    <h3>Steps: </h3>
+                    <h3 className='summ'>Steps: </h3>
                     {detRec.instructions?.length > 1 &&
                     isNaN(detRec.id) ? detRec.instructions :
                     detRec.instructions?.map(e => {
                         return(
-                            <ul>
+                            <ul className='lett'>
                                 <li>{e.number +': ' + e.step}</li>
                             </ul>
                         )
